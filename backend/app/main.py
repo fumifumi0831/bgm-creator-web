@@ -44,7 +44,8 @@ def read_root():
 
 async def process_job(job_id: str, audio_path: str, image_path: Optional[str], 
                duration: int, frequency: Optional[float], 
-               fade_in: int, fade_out: int, add_motion: bool):
+               fade_in: int, fade_out: int, add_motion: bool,
+               audio_profile: str, apply_frequency_optimization: bool):
     """
     Background task to process audio and video
     """
@@ -55,7 +56,8 @@ async def process_job(job_id: str, audio_path: str, image_path: Optional[str],
         # Step 1: Process audio
         output_dir = "./temp/outputs"
         processed_audio = AudioProcessor.process_audio(
-            audio_path, output_dir, duration, frequency, fade_in, fade_out
+            audio_path, output_dir, duration, frequency, fade_in, fade_out,
+            profile=audio_profile, apply_frequency_optimization=apply_frequency_optimization
         )
         
         update_job_status(job_id, "processing", 50, "Creating video...")
@@ -118,7 +120,9 @@ async def process_files(background_tasks: BackgroundTasks,
                        frequency: Optional[float] = Form(None),  # Hz adjustment
                        fade_in: Optional[int] = Form(0),  # Fade in duration in seconds
                        fade_out: Optional[int] = Form(0),  # Fade out duration in seconds
-                       add_motion: bool = Form(False)  # Whether to add motion to static images
+                       add_motion: bool = Form(False),  # Whether to add motion to static images
+                       audio_profile: str = Form("default"),  # Audio optimization profile
+                       apply_frequency_optimization: bool = Form(True)  # Whether to apply frequency optimization
                        ):
     # Generate job ID
     job_id = str(uuid.uuid4())
@@ -140,7 +144,8 @@ async def process_files(background_tasks: BackgroundTasks,
     
     # Start processing in background
     background_tasks.add_task(
-        process_job, job_id, audio_path, image_path, duration, frequency, fade_in, fade_out, add_motion
+        process_job, job_id, audio_path, image_path, duration, frequency, 
+        fade_in, fade_out, add_motion, audio_profile, apply_frequency_optimization
     )
     
     return {"job_id": job_id, "message": "Processing started"}
@@ -176,6 +181,25 @@ def download_file(file_id: str):
         media_type="video/mp4",
         filename=f"bgm_{file_id}.mp4"
     )
+
+@app.get("/api/profiles")
+def get_audio_profiles():
+    """
+    Get available audio optimization profiles
+    """
+    config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.json')
+    
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+                return {
+                    "profiles": list(config.get("profiles", {}).keys())
+                }
+        except Exception as e:
+            return {"profiles": ["default"]}
+    
+    return {"profiles": ["default"]}
 
 # Cleanup task
 @app.on_event("startup")
