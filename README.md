@@ -1,6 +1,8 @@
 # BGM Creator Web
 
-A web application for creating YouTube BGM videos with loop playback and frequency adjustment. This project aims to simplify the process of creating background music videos for YouTube content creators.
+A web application for creating YouTube BGM videos with loop playback and frequency adjustment.
+
+[日本語のREADMEはこちら](README.ja.md)
 
 ## Features
 
@@ -8,7 +10,6 @@ A web application for creating YouTube BGM videos with loop playback and frequen
 - Adjust frequency (Hz) of audio files
 - Add fade-in and fade-out effects
 - Add static images or GIF animations to videos
-- Add motion effects to static images
 - Generate videos of custom length (up to 30 minutes)
 - Simple and intuitive user interface for casual creators
 
@@ -112,6 +113,11 @@ Open [http://localhost:3000](http://localhost:3000) in your web browser.
 2. **Download Your Video**
    - Once processing is complete, download your video
    - Upload to YouTube or use as needed
+
+## Documentation
+
+- [Setup Guide (Japanese)](docs/setup_guide.ja.md)
+- [User Guide (Japanese)](docs/user_guide.ja.md)
 
 ## Deployment
 
