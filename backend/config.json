@@ -1,0 +1,33 @@
+{
+    "profiles": {
+        "default": {
+            "low_freq_range": [50, 200],
+            "low_boost": 3.0,
+            "cry_freq_range": [2500, 5000],
+            "cry_reduction": -3.0
+        },
+        "work": {
+            "low_freq_range": [40, 180],
+            "low_boost": 4.0,
+            "cry_freq_range": [2800, 5500],
+            "cry_reduction": -4.0
+        },
+        "relax": {
+            "low_freq_range": [60, 250],
+            "low_boost": 5.0,
+            "cry_freq_range": [2200, 4500],
+            "cry_reduction": -2.0
+        },
+        "focus": {
+            "low_freq_range": [30, 150],
+            "low_boost": 2.5,
+            "cry_freq_range": [3000, 6000],
+            "cry_reduction": -5.0
+        }
+    },
+    "audio": {
+        "crossfade_duration": 3.0,
+        "sample_rate": 44100,
+        "quality": 2
+    }
+}
