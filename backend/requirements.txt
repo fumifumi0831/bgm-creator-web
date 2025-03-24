@@ -1,0 +1,10 @@
+fastapi==0.104.0
+uvicorn==0.23.2
+python-multipart==0.0.6
+pydantic==2.4.2
+ffmpeg-python==0.2.0
+pymp3==0.3.0
+PIL==10.0.0
+requests==2.31.0
+numpy==1.26.0
+python-dotenv==1.0.0
