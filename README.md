@@ -35,6 +35,10 @@ A web application for creating YouTube BGM videos with loop playback and frequen
 └── docs/              # Documentation
 ```
 
+## Project Status and Updates
+
+**2025-03-25**: Added missing components and updated dependencies. The application now has a complete UI flow with all required screens.
+
 ## Getting Started
 
 ### Prerequisites
@@ -113,6 +117,15 @@ Open [http://localhost:3000](http://localhost:3000) in your web browser.
 2. **Download Your Video**
    - Once processing is complete, download your video
    - Upload to YouTube or use as needed
+
+## Sound Profiles
+
+The application includes several sound profiles to optimize audio for different purposes:
+
+- **Default**: Balanced audio profile with moderate bass enhancement
+- **Work**: Enhanced for work environments with focus on concentration
+- **Relax**: Warmer sound profile ideal for relaxation and meditation
+- **Focus**: Strong frequency adjustment for maximum focus and concentration
 
 ## Documentation
 
